@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 public class ProgramaSistemaMidias implements SistemaMidias{
     private HashMap<String, Midias> midias;
@@ -21,7 +20,16 @@ public class ProgramaSistemaMidias implements SistemaMidias{
     public ProgramaSistemaMidias(){
         this.midias = new HashMap<>();
         this.gravador = new GravadorDeDados();
+
+
+        try {
+            this.midias = gravador.recuperarDados(); // Carrega as mídias ao iniciar o sistema
+        } catch (IOException e) {
+            this.midias = new HashMap<>(); // Se houver erro, começa com um mapa vazio
+        }
     }
+
+
     @Override
     public void cadastrarMidias(Midias midia) throws MidiaJaExisteException {
         if(this.midias.containsKey(midia.getTitulo())){
@@ -145,6 +153,6 @@ public class ProgramaSistemaMidias implements SistemaMidias{
     }
     @Override
     public void recuperarDados()throws IOException {
-        this.midias = this.gravador.recuperarMidias();
+        this.midias = this.gravador.recuperarDados();
     }
 }

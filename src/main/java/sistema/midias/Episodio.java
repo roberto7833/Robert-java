@@ -1,6 +1,8 @@
 package sistema.midias;
 
-public class Episodio {
+import java.io.Serializable;
+
+public class Episodio implements Serializable {
     private String nomeEp;
     private int duracaoEp;
 

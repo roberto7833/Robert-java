@@ -31,6 +31,6 @@ public class Serie extends Midias implements Serializable {
 
     @Override
     public String toString() {
-        return " Serie "+ super.getTitulo()+"\nEpisodios "+episodios.size()+"\nDuração "+this.duracaoMedia();
+        return " Serie: "+ super.getTitulo()+"\ngenero: "+super.getGenero()+"\ndescricao: "+super.getDescricao()+"\ndiretor: "+super.getDiretor()+"elenco: "+String.join(",",super.getElenco())+"\nEpisodios: "+episodios.size()+"\nDuração: "+this.duracaoMedia();
     }
 }

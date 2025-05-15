@@ -2,10 +2,14 @@ package sistema.GUI;
 
 import sistema.ProgramaSistemaMidias;
 import sistema.SistemaMidias;
+import sistema.controller.*;
+import sistema.midias.GravadorDeDados;
+import sistema.midias.Midias;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class ProgramaMidiasGUIComMenu extends JFrame {
     JLabel linha1, linha2;
@@ -57,18 +61,40 @@ public class ProgramaMidiasGUIComMenu extends JFrame {
         JMenu menuRemover = new JMenu("remover");
         JMenuItem menuRemoverMidia = new JMenuItem("remover midia");
         menuRemover.add(menuRemoverMidia);
+        menuCadastrarMidia.addActionListener(new MidiaAddController(midias, this));
+        menuPesquisarPorTitulo.addActionListener(new MidiaSeachTituloController(midias, this));
+        menuPesquisarPorGenero.addActionListener(new MidiaSeachGeneroController(midias, this));
+        menuPesquisarPorDiretor.addActionListener(new MidiaSearchDiretorController(midias, this));
+        menuPesquisarPorAtor.addActionListener(new MidiaSeachAtorController(midias, this));
+        menuPesquisarPorAno.addActionListener(new MidiaSearchAnoController(midias, this));
+        menuTodasMidiasCadastradas.addActionListener(new MidiaTodasAsMidiasCadastradas(midias, this));
+        menuSeriesCadastradas.addActionListener(new MidiaTodasSeriesCadastradas(midias, this));
+        menuFilmesCadastrados.addActionListener(new MidiaTodosFilmesCadastrados(midias, this));
+        menuRemoverMidia.addActionListener(new MidiaRemoverController(midias, this));
 
         barraDeMenu.add(menuCadastrar);
         barraDeMenu.add(menuPesquisar);
         barraDeMenu.add(menuMostrarMidias);
         barraDeMenu.add(menuRemover);
         setJMenuBar(barraDeMenu);
+
     }
 
     //...
     public static void main(String [] args)throws IOException {
+
+        ProgramaSistemaMidias sistema;
+        sistema = new ProgramaSistemaMidias();
+        try {
+            sistema.recuperarDados();
+            JOptionPane.showMessageDialog(null, "Dados carregados com sucesso.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível carregar os dados salvos.");
+        }
+
         JFrame janela = new ProgramaMidiasGUIComMenu();
         janela.setVisible(true);
+        //sistema.salvarDados();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

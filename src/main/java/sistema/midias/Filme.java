@@ -17,6 +17,6 @@ public class Filme extends Midias implements Serializable {
     }
     @Override
     public String toString() {
-        return "Filme "+super.getTitulo()+"\nGenero"+super.getGenero()+"\nDescrição"+super.getDescricao()+"\nDiretor"+super.getDiretor()+"\nElenco"+String.join(",",super.getElenco());
+        return "Filme: "+super.getTitulo()+"\nGenero: "+super.getGenero()+"\nDescrição: "+super.getDescricao()+"\nDiretor: "+super.getDiretor()+"\nElenco: "+String.join(",",super.getElenco())+ "\nduracao: "+duracao;
     }
 }
