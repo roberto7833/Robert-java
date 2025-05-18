@@ -19,6 +19,7 @@ public interface SistemaMidias {
     Collection<Midias> mostrarTodasAsSeries();
     Collection<Midias> mostrarTodasAsMidiasCadastradas();
     void atualizarMidias(String titulo, String novoTitulo, String novoGenero, int anoLancamento)throws MidiaInexistenteException;
+    Midias getMidias(String titulo) throws MidiaInexistenteException;
     void removerMidia(String titulo)throws MidiaInexistenteException;
     void salvarDados()throws IOException;
     void recuperarDados()throws IOException;

@@ -36,6 +36,7 @@ public class ProgramaSistemaMidias implements SistemaMidias{
             throw new MidiaJaExisteException("já existe uma midia cadastrada com esse nome");
         }
         midias.put(midia.getTitulo(), midia);
+        //salvar dados
     }
     @Override
     public Collection<Midias> pesquisarPorTitulo(String titulo) {
@@ -136,7 +137,7 @@ public class ProgramaSistemaMidias implements SistemaMidias{
         if(!midias.containsKey(titulo)){
             throw new MidiaInexistenteException("midia não encontrada");
         }
-        return midias.get(titulo);
+        return this.midias.get(titulo);
     }
     @Override
     public void removerMidia(String titulo) throws MidiaInexistenteException {
